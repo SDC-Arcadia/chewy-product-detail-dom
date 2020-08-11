@@ -8,8 +8,12 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "db:setup": "node DBMongo/seedMongo.js",
+    "test": "node client/dist/index.js"
   },
   "dependencies": {
+    "faker": "^4.1.0",
+    "mongoose": "^5.9.27"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
