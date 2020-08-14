@@ -8,7 +8,7 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(express.static('./client/dist'));
 
-app.get('/', (req, res) => {
+app.get('/ad', (req, res) => {
   console.log('in express');
   res.end();
 });

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './public/app.jsx',
+  entry: './public/index.jsx',
   mode: 'development',
   output: {
     path: path.resolve(__dirname, './client/dist'),

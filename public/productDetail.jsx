@@ -9,10 +9,19 @@ import ReactDOM from 'react-dom';
 //     Here is an App
 //   </div>
 // );
-class App extends React.Component {
+class ProductDetail extends React.Component {
+  // constructor() {
+  //   super(),
+  //   this.state = {
+  //     productId: 'P001',
+  //   };
+  // }
+  // getDataForProductId() {
+  //   // @this.ajax()
+  // }
   render() {
     return (<div>Here is an another App</div>);
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<ProductDetail />, document.getElementById('app'));
