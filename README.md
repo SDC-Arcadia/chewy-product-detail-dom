@@ -4,10 +4,11 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/feckwame/dom-chewy-pictures
+  - https://github.com/feckwame/chris-chewy-reviews
+  - https://github.com/feckwame/q-and-a
+  - https://github.com/feckwame/dom-chewy-PLAB
+  - https://github.com/feckwame/chris-chewy-description
 
 ## Table of Contents
 
@@ -21,10 +22,8 @@
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
+- Node 12.13.1
+- npm 6.12.1
 
 ## Development
 
@@ -33,7 +32,6 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
 ```
 
