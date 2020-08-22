@@ -11,12 +11,13 @@
     "start": "webpack --config webpack.dev.js --watch",
     "server": "nodemon server/index.js",
     "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix",
-    "husky": {
-      "hooks": {
-        "pre-commit": "npm run pretest"
-      }
-    } 
+    "lint": "eslint . --ext .js,.jsx"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pretest"
+    }
+  }, 
   "jest": {
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
