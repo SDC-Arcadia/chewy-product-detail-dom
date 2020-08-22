@@ -1,11 +1,10 @@
+/* eslint-disable no-undef */
 const supertest = require('supertest');
-
-// const request = require('supertest')
-
 const app = require('../server/server');
-const request = supertest(app);
-// const {MongoClient} = require('mongodb');
 
+const request = supertest(app);
+
+// eslint-disable-next-line no-undef
 describe('Test Endpoints', () => {
   it('Initial check for jest suite', (done) => {
     expect(1).toBe(1);
@@ -15,7 +14,7 @@ describe('Test Endpoints', () => {
   test('GET productInfo should return 200', (done) => {
     request.get('/productInfo/P003').then((response) => {
       expect(response.header['content-type']).toBe(
-        'application/json; charset=utf-8'
+        'application/json; charset=utf-8',
       );
       expect(response.statusCode).toBe(200);
       expect(response.body).toEqual({
@@ -31,7 +30,7 @@ describe('Test Endpoints', () => {
   test('GET productInfo should return 404 when requesting invalid productId', (done) => {
     request.get('/productInfo/POO3').then((response) => {
       expect(response.header['content-type']).toBe(
-        'application/json; charset=utf-8'
+        'application/json; charset=utf-8',
       );
       expect(response.statusCode).toBe(404);
       done();
@@ -41,7 +40,7 @@ describe('Test Endpoints', () => {
   test('GET productFullData should return 200', (done) => {
     request.get('/productFullData/P003').then((response) => {
       expect(response.header['content-type']).toBe(
-        'application/json; charset=utf-8'
+        'application/json; charset=utf-8',
       );
       expect(response.statusCode).toBe(200);
       expect(response.body).toEqual({
@@ -87,7 +86,7 @@ describe('Test Endpoints', () => {
   test('GET productFullData should return 404 when requesting invalid productId', (done) => {
     request.get('/productFullData/POO3').then((response) => {
       expect(response.header['content-type']).toBe(
-        'application/json; charset=utf-8'
+        'application/json; charset=utf-8',
       );
       expect(response.statusCode).toBe(404);
       done();

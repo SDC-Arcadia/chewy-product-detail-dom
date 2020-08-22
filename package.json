@@ -10,12 +10,11 @@
     "build": "webpack --config webpack.prod.js",
     "start": "webpack --config webpack.dev.js --watch",
     "server": "nodemon server/index.js",
-    "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix",
     "lint": "eslint . --ext .js,.jsx"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pretest"
+      "pre-commit": "npm run lint"
     }
   }, 
   "jest": {
@@ -44,7 +43,6 @@
     "@babel/preset-react": "^7.10.4",
     "@shelf/jest-mongodb": "^1.2.2",
     "babel-loader": "^8.1.0",
-    "cors": "^2.8.5",
     "css-loader": "^4.2.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.0",
