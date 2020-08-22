@@ -4,23 +4,38 @@ import React from 'react';
 
 import ReactDOM from 'react-dom';
 
-// const App = () => (
-//   <div>
-//     Here is an App
-//   </div>
-// );
 class ProductDetail extends React.Component {
-  // constructor() {
-  //   super(),
-  //   this.state = {
-  //     productId: 'P001',
-  //   };
-  // }
-  // getDataForProductId() {
-  //   // @this.ajax()
-  // }
+  constructor() {
+    super(),
+    this.state = {
+      productId: 'P003',
+      productFullData: ''
+    };
+  }
+
+  getProductFullData() {
+    fetch(`http://localhost:3001/productFullData/${this.state.productId}`,{
+      method:'GET',
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log('Success:', result);
+      this.setState({
+        productFullData: result
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  };
+
+  componentDidMount() {
+    this.getProductFullData();
+  }
+
   render() {
-    return (<div>Here is an another App</div>);
+    console.log('----',this.state)
+    return (<div>Here ddsfs</div>);
   }
 }
 

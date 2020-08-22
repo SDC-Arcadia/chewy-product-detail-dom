@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/product_detail',
-{ 
+const db = mongoose.connect('mongodb://localhost/product_detail',
+{   useCreateIndex: true,
     useUnifiedTopology: true,
     useNewUrlParser: true
 });
 
-let disconnect = () => {
-    mongoose.connection.close();
-}
-
-module.exports = disconnect;
+module.exports = db;

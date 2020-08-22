@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
-
+const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
 const schema = new mongoose.Schema({
-  _id: String,
+  _id: {
+    type: String,
+    unique: true,
+    index: true
+  },
   brand: String,
   name: String,
   seller: String,
