@@ -26,7 +26,7 @@ class ProductDetail extends React.Component {
     this.getProductFullData = this.getProductFullData.bind(this);
     this.handleDifferentSizeOptions = this.handleDifferentSizeOptions.bind(this);
   }
-  
+
   handleDifferentSizeOptions(event) {
     event.preventDefault();
     this.setState({
