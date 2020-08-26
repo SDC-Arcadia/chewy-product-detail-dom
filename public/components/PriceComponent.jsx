@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
-// eslint-disable-next-line no-unused-vars
-const PriceComponent = () => (
+import React from 'react';
 
-  <>
-    <div />
-  </>
+const PriceComponent = ({ price, seller, shippingOptions }) => (
+  <div>
+    <div>{price}</div>
+    <div>{seller}</div>
+    <div>{shippingOptions}</div>
+  </div>
 );
 
 export default PriceComponent;

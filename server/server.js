@@ -10,20 +10,22 @@ app.use(express.static('./client/dist'));
 
 app.get('/productFullData/:productId', (req, res) => {
   console.log(req.params);
-
   Product.findById(req.params.productId)
     .then((data) => {
       if (!data) {
         res.status(404).send({ message: 'Not found!' });
+        res.end();
       } else {
         res.send(data);
       }
     })
-    .catch((err) => res.status(500).send({ message: err }));
+    .catch((err) => {
+      res.status(500).send({ message: err });
+    });
 });
 
 app.get('/productInfo/:productId', (req, res) => {
-  console.log(req.params);
+  console.log(req.params.productId);
 
   Product
     .findById(req.params.productId, 'brand name seller')
