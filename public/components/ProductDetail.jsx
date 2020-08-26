@@ -24,18 +24,25 @@ class ProductDetail extends React.Component {
       currentSize: '0',
     };
     this.getProductFullData = this.getProductFullData.bind(this);
+    this.handleDifferentSizeOptions = this.handleDifferentSizeOptions.bind(this);
+  }
+  
+  handleDifferentSizeOptions(event) {
+    event.preventDefault();
+    this.setState({
+      currentSize: event.target.id,
+    });
   }
 
   getProductFullData(productId) {
     axios.get(`http://localhost:3001/productFullData/${productId}`)
       .then((result) => {
-        console.log('----------', result);
         const {
           brand,
           seller,
           name,
           size_options,
-        } = result;
+        } = result.data;
 
         this.setState({
           itemBrand: brand,
@@ -73,7 +80,7 @@ class ProductDetail extends React.Component {
                 discount={itemSizes[this.state.currentSize].discount}
                 shippingOptions={itemSizes[this.state.currentSize].shipping_options}
               />
-              <ItemStockComponent />
+              <ItemStockComponent changeSize={this.handleDifferentSizeOptions} />
             </div>
           )
           : <div>Loading...</div>
