@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./client/dist'));
 
 app.get('/productFullData/:productId', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3011');
   console.log(req.params);
   Product.findById(req.params.productId)
     .then((data) => {
@@ -19,8 +20,8 @@ app.get('/productFullData/:productId', (req, res) => {
         res.send(data);
       }
     })
-    .catch((err) => {
-      res.status(500).send({ message: err });
+    .catch(() => {
+      res.status(500);
     });
 });
 

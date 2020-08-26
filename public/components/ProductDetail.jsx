@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 /* eslint-disable camelcase */
@@ -5,6 +6,8 @@
 /* eslint-disable no-console */
 /* eslint-disable react/sort-comp */
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import axios from 'axios';
 import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
 import ItemStockComponent from './ItemStockComponent.jsx';
@@ -14,7 +17,6 @@ class ProductDetail extends React.Component {
     // eslint-disable-next-line no-unused-expressions
     super();
     this.state = {
-      productId: 'P001',
       itemBrand: '',
       itemSeller: '',
       itemName: '',
@@ -24,15 +26,10 @@ class ProductDetail extends React.Component {
     this.getProductFullData = this.getProductFullData.bind(this);
   }
 
-  getProductFullData() {
-    const { productId } = this.state;
-
-    // eslint-disable-next-line no-undef
-    fetch(`http://localhost:3001/productFullData/${productId}`, {
-      method: 'GET',
-    })
-      .then((response) => response.json())
+  getProductFullData(productId) {
+    axios.get(`http://localhost:3001/productFullData/${productId}`)
       .then((result) => {
+        console.log('----------', result);
         const {
           brand,
           seller,
@@ -53,8 +50,9 @@ class ProductDetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mounted');
-    this.getProductFullData();
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('product-detail');
+    this.getProductFullData(id);
   }
 
   render() {
