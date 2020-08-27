@@ -58,7 +58,7 @@ class ProductDetail extends React.Component {
 
   componentDidMount() {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('product-detail');
+    const id = urlParams.get('productId');
     this.getProductFullData(id);
   }
 
