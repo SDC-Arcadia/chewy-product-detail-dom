@@ -2,11 +2,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 
-const ItemStockComponent = () => (
+const ItemStockComponent = ({ changeSize }) => (
   <div>
-    <button type="button">small</button>
-    <button type="button">medium</button>
-    <button type="button">large</button>
+    <button onClick={changeSize} type="button" id="0">small</button>
+    <button onClick={changeSize} type="button" id="1">medium</button>
+    <button onClick={changeSize} type="button" id="2">large</button>
   </div>
 );
 
