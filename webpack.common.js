@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './public/productDetail.jsx',
+  entry: './public/index.jsx',
   module: {
     rules: [
       {
