@@ -1,12 +1,7 @@
-// eslint-disable-next-line no-unused-vars
 const path = require('path');
-// eslint-disable-next-line no-unused-vars
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './public/productDetail.jsx',
-  mode: 'development',
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {

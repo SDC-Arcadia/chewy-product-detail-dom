@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-nested-ternary */
 const faker = require('faker');
 const Product = require('./Product.js');

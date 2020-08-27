@@ -1,22 +1,37 @@
 {
   "name": "product_detail",
   "version": "",
+  "main": "index.js",
   "author": "Aslanbek Darchiev",
-  "engines": {
-    "node": ">=6.13.0"
-  },
   "scripts": {
+
+    "test": "jest --runInBand --detectOpenHandles --watch",
     "db:setup": "node DBMongo/seedMongo.js",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack --config webpack.dev.js --watch",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "lint": "eslint . --ext .js,.jsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }, 
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "verbose": true
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
     "mongoose": "^5.9.27",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -26,6 +41,7 @@
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
+    "@shelf/jest-mongodb": "^1.2.2",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.1",
     "eslint": "^7.2.0",
@@ -36,12 +52,16 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
+    "jest": "^26.4.0",
     "jquery": "^3.5.1",
     "mini-css-extract-plugin": "^0.10.0",
+    "mongodb": "^3.6.0",
+    "mongodb-memory-server": "6.6.3",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
+    "supertest": "^4.0.2",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
