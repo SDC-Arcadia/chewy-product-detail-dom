@@ -11,7 +11,7 @@ const common = require('./webpack.common');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: '[name].[contentHash].bundle.js',
+    filename: 'product-detail.prod-bundle.js',
     path: path.resolve(__dirname, './client/build'),
   },
   optimization: {
