@@ -1,15 +1,21 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
+
+const cors = require('cors');
+const axios = require('axios');
+
 const Product = require('../DBMongo/Product.js');
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./client/dist'));
 
 app.get('/productFullData/:productId', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3011');
   console.log(req.params);
   Product.findById(req.params.productId)
     .then((data) => {
@@ -17,7 +23,26 @@ app.get('/productFullData/:productId', (req, res) => {
         res.status(404).send({ message: 'Not found!' });
         res.end();
       } else {
-        res.send(data);
+        axios.get(`http://localhost:3007/reviewSummary/${req.params.productId}`)
+          .then((result) => {
+            // data.reviewCount = result.data.review_count;
+            result.data.brand = data.brand;
+            result.data.name = data.name;
+            result.data.seller = data.seller;
+            result.data.size_options = data.size_options.map((item) => ({
+              size: item.size,
+              price: item.price,
+              discount: item.discount,
+              shipping_options: item.shipping_options,
+              item_stock: item.item_stock,
+              is_favorite: item.is_favorite,
+            }));
+            console.log('>>>>>>>>>>', result.data);
+            res.send(result.data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       }
     })
     .catch((err) => {

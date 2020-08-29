@@ -37,11 +37,13 @@ class ProductDetail extends React.Component {
   getProductFullData(productId) {
     axios.get(`http://localhost:3001/productFullData/${productId}`)
       .then((result) => {
+        console.log('\\\\\\\\\\\\\\', result);
         const {
           brand,
           seller,
           name,
           size_options,
+          review_count,
         } = result.data;
 
         this.setState({
@@ -49,6 +51,7 @@ class ProductDetail extends React.Component {
           itemSeller: seller,
           itemName: name,
           itemSizes: size_options,
+          count: review_count,
         });
       })
       .catch((error) => {
@@ -58,8 +61,8 @@ class ProductDetail extends React.Component {
 
   componentDidMount() {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('product-detail');
-    this.getProductFullData(id);
+    const id = urlParams.get('productId');
+    this.getProductFullData(id === null ? 'P001' : id);
   }
 
   render() {
@@ -74,6 +77,7 @@ class ProductDetail extends React.Component {
                 name={this.state.itemName}
                 seller={this.state.itemSeller}
                 brand={this.state.itemBrand}
+                count={this.state.count}
               />
               <PriceComponent
                 price={itemSizes[this.state.currentSize].price}
