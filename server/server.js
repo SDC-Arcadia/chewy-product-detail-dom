@@ -37,7 +37,7 @@ app.get('/productFullData/:productId', (req, res) => {
               item_stock: item.item_stock,
               is_favorite: item.is_favorite,
             }));
-            console.log('>>>>>>>>>>', result.data);
+            // console.log('>>>>>>>>>>', result.data);
             res.send(result.data);
           })
           .catch((error) => {

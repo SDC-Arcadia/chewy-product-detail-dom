@@ -8,6 +8,7 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
+import '../styles.scss';
 import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
 import ItemStockComponent from './ItemStockComponent.jsx';
@@ -72,7 +73,8 @@ class ProductDetail extends React.Component {
         {
         itemSizes.length
           ? (
-            <div>
+            <section id="right-column">
+              <div id="zoom-container" />
               <ProductHeader
                 name={this.state.itemName}
                 seller={this.state.itemSeller}
@@ -85,7 +87,7 @@ class ProductDetail extends React.Component {
                 shippingOptions={itemSizes[this.state.currentSize].shipping_options}
               />
               <ItemStockComponent changeSize={this.handleDifferentSizeOptions} />
-            </div>
+            </section>
           )
           : <div>Loading...</div>
         }
