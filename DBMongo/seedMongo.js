@@ -45,9 +45,16 @@ const seedDB = () => {
       ],
     });
   }
-  Product.create(items)
-    .then(() => { db.close(); })
-    .catch((err) => console.log(err));
+
+  Product.remove({}, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      Product.create(items)
+        .then(() => { db.close(); })
+        .catch((creationErr) => console.log(creationErr));
+    }
+  });
 };
 
 seedDB();
