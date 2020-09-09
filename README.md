@@ -34,4 +34,7 @@ From within the root directory:
 ```sh
 npm install
 ```
-
+```docker 
+main docker command to build: docker-compose up --build -d 
+run seeding container: docker build -f Dockerfile.seed .
+```

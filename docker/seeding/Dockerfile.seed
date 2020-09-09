@@ -1,0 +1,13 @@
+FROM node:12.13.1
+
+WORKDIR /code
+
+COPY ./DBMongo/index.js /code/DBMongo/index.js
+
+COPY ./DBMongo/Product.js /code/DBMongo/Product.js
+
+COPY ./DBMongo/seedMongo.js /code/DBMongo/seedMongo.js
+
+RUN npm install mongoose faker
+
+CMD ["node", "DBMongo/seedMongo.js"]

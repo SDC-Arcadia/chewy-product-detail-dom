@@ -23,22 +23,24 @@ app.get('/productFullData/:productId', (req, res) => {
         res.status(404).send({ message: 'Not found!' });
         res.end();
       } else {
-        axios.get(`http://localhost:3007/reviewSummary/${req.params.productId}`)
+        axios.get(`http://ec2-204-236-154-81.us-west-1.compute.amazonaws.com:3007/reviewSummary/${req.params.productId}`)
           .then((result) => {
-            // data.reviewCount = result.data.review_count;
-            result.data.brand = data.brand;
-            result.data.name = data.name;
-            result.data.seller = data.seller;
-            result.data.size_options = data.size_options.map((item) => ({
-              size: item.size,
-              price: item.price,
-              discount: item.discount,
-              shipping_options: item.shipping_options,
-              item_stock: item.item_stock,
-              is_favorite: item.is_favorite,
-            }));
-            // console.log('>>>>>>>>>>', result.data);
-            res.send(result.data);
+            if (result) {
+              result.data.brand = data.brand;
+              result.data.name = data.name;
+              result.data.seller = data.seller;
+              result.data.size_options = data.size_options.map((item) => ({
+                size: item.size,
+                price: item.price,
+                discount: item.discount,
+                shipping_options: item.shipping_options,
+                item_stock: item.item_stock,
+                is_favorite: item.is_favorite,
+              }));
+              res.send(result.data);
+            } else {
+              res.send(data);
+            }
           })
           .catch((error) => {
             console.error('Error:', error);
