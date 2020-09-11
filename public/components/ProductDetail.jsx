@@ -38,7 +38,7 @@ class ProductDetail extends React.Component {
   getProductFullData(productId) {
     axios.get(`http://localhost:3001/productFullData/${productId}`)
       .then((result) => {
-        console.log('\\\\\\\\\\\\\\', result);
+        // console.log('\\\\\\\\\\\\\\', result);
         const {
           brand,
           seller,

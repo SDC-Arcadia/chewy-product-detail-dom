@@ -10,19 +10,26 @@ services:
       dockerfile: './docker/app/Dockerfile.app'
     ports:
       - '3001:3001'
-    links:
-      - mongo
-    tty: true  
-  mongo:
-    container_name: mongo
-    image: mongo
-    volumes: 
-      - ./data:/data/db
-    ports:
-      - '27017:27017'
-  seed:
-    build:
-      context: .
-      dockerfile: ./docker/seeding/Dockerfile.seed
     depends_on:
-      - mongo  
+      - db
+    networks: 
+      - pr-network
+  db:
+    image: mongo:latest
+    # container_name: mongo
+    # image: mongo
+    container_name: mongo-db
+    restart: always
+    volumes:
+      - "data:/data/db"
+    ports:
+      - "27017:27017"
+    networks: 
+      - pr-network
+volumes:
+  data:
+    external: true
+networks: 
+  pr-network:
+    external: true  
+

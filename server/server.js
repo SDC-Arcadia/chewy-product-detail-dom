@@ -25,25 +25,22 @@ app.get('/productFullData/:productId', (req, res) => {
       } else {
         axios.get(`http://ec2-204-236-154-81.us-west-1.compute.amazonaws.com:3007/reviewSummary/${req.params.productId}`)
           .then((result) => {
-            if (result) {
-              result.data.brand = data.brand;
-              result.data.name = data.name;
-              result.data.seller = data.seller;
-              result.data.size_options = data.size_options.map((item) => ({
-                size: item.size,
-                price: item.price,
-                discount: item.discount,
-                shipping_options: item.shipping_options,
-                item_stock: item.item_stock,
-                is_favorite: item.is_favorite,
-              }));
-              res.send(result.data);
-            } else {
-              res.send(data);
-            }
+            result.data.brand = data.brand;
+            result.data.name = data.name;
+            result.data.seller = data.seller;
+            result.data.size_options = data.size_options.map((item) => ({
+              size: item.size,
+              price: item.price,
+              discount: item.discount,
+              shipping_options: item.shipping_options,
+              item_stock: item.item_stock,
+              is_favorite: item.is_favorite,
+            }));
+            res.send(result.data);
           })
           .catch((error) => {
-            console.error('Error:', error);
+            console.error('REVIEWS Error:', error.Error);
+            res.send(data);
           });
       }
     })
