@@ -18,11 +18,13 @@ class ProductDetail extends React.Component {
     // eslint-disable-next-line no-unused-expressions
     super();
     this.state = {
-      itemBrand: '',
+      brand: '',
       itemSeller: '',
       itemName: '',
       itemSizes: [],
       currentSize: '0',
+      average_stars: '0',
+      QA: '17',
     };
     this.getProductFullData = this.getProductFullData.bind(this);
     this.handleDifferentSizeOptions = this.handleDifferentSizeOptions.bind(this);
@@ -38,13 +40,14 @@ class ProductDetail extends React.Component {
   getProductFullData(productId) {
     axios.get(`http://localhost:3001/productFullData/${productId}`)
       .then((result) => {
-        console.log('\\\\\\\\\\\\\\', result);
+        // console.log('\\\\\\\\\\\\\\', result.data);
         const {
           brand,
           seller,
           name,
           size_options,
           review_count,
+          average_stars,
         } = result.data;
 
         this.setState({
@@ -53,6 +56,7 @@ class ProductDetail extends React.Component {
           itemName: name,
           itemSizes: size_options,
           count: review_count,
+          average_stars,
         });
       })
       .catch((error) => {
@@ -80,6 +84,8 @@ class ProductDetail extends React.Component {
                 seller={this.state.itemSeller}
                 brand={this.state.itemBrand}
                 count={this.state.count}
+                averageStars={this.state.average_stars}
+                answersCount={this.state.QA}
               />
               <PriceComponent
                 price={itemSizes[this.state.currentSize].price}
