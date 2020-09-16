@@ -1,12 +1,7 @@
-/* eslint-disable radix */
 /* eslint-disable react/prop-types */
-/* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 
 const PriceBeforeDiscount = ({ priceBefore }) => (
-  // <div id="product-vitals" className="product-vitals">
-  //   <div id="pricing">
-  // <ul>
   <li className="our-price">
     <table>
       <tbody>
@@ -25,7 +20,6 @@ const PriceBeforeDiscount = ({ priceBefore }) => (
       </tbody>
     </table>
   </li>
-
 );
 
 export default PriceBeforeDiscount;

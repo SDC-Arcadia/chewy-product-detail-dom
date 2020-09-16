@@ -1,12 +1,13 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-/* eslint-disable react/no-unused-state */
 /* eslint-disable no-console */
+/* eslint-disable no-undef */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/sort-comp */
+/* eslint-disable camelcase */
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-extraneous-dependencies */
+
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import '../styles.scss';
 import PriceComponent from './PriceComponent.jsx';

@@ -46,7 +46,6 @@ const PriceComponent = ({ price, discount, shippingOptions }) => {
           {discount === 0 ? '' : <YouSaveOnPriceComponent discountedAmount={discounted} discountPercentage={discount} />}
           <hr className="hr1" />
           {discount === 0 ? <AutoshipComponent fullPrice={price} /> : <AutoshipComponent fullPrice={price - discounted} />}
-          {/* <AutoshipComponent fullPrice={price} /> */}
           <hr className="hr2" />
         </ul>
       </div>

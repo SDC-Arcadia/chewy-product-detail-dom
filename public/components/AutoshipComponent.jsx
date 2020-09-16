@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable react/prop-types */
 import React from 'react';
 
 const AutoshipComponent = ({ fullPrice }) => {
