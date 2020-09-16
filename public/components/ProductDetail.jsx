@@ -1,17 +1,17 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-/* eslint-disable react/no-unused-state */
 /* eslint-disable no-console */
+/* eslint-disable no-undef */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/sort-comp */
+/* eslint-disable camelcase */
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-extraneous-dependencies */
+
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import '../styles.scss';
 import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
-import ItemStockComponent from './ItemStockComponent.jsx';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -73,28 +73,32 @@ class ProductDetail extends React.Component {
 
   render() {
     const { itemSizes } = this.state;
+    console.log(this.state);
     return (
       <div>
         {
         itemSizes.length
           ? (
-            <section id="right-column">
-              <div id="zoom-container" />
-              <ProductHeader
-                name={this.state.itemName}
-                seller={this.state.itemSeller}
-                brand={this.state.itemBrand}
-                count={this.state.count}
-                averageStars={this.state.average_stars}
-                answersCount={this.state.QA}
-              />
-              <PriceComponent
-                price={itemSizes[this.state.currentSize].price}
-                discount={itemSizes[this.state.currentSize].discount}
-                shippingOptions={itemSizes[this.state.currentSize].shipping_options}
-              />
-              <ItemStockComponent changeSize={this.handleDifferentSizeOptions} />
-            </section>
+            <>
+              <section id="right-column">
+                <div id="zoom-container" />
+                <ProductHeader
+                  name={this.state.itemName}
+                  seller={this.state.itemSeller}
+                  brand={this.state.itemBrand}
+                  count={this.state.count}
+                  averageStars={this.state.average_stars}
+                  answersCount={this.state.QA}
+                />
+                <PriceComponent
+                  price={itemSizes[this.state.currentSize].price}
+                  discount={itemSizes[this.state.currentSize].discount}
+                  stock={itemSizes[this.state.currentSize].item_stock}
+                  size={itemSizes[this.state.currentSize].size}
+                  changeSize={this.handleDifferentSizeOptions}
+                />
+              </section>
+            </>
           )
           : <div>Loading...</div>
         }
