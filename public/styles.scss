@@ -1,6 +1,176 @@
 #product-title h1 {
+  font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding-top: 1em;
+  color: #000000;
+  border: none;
+  box-sizing: border-box;
   font-weight: 600;
   font-size: 2.4em;
-  line-height: 1.2em;
-  margin-bottom: 5px;
+  // line-height: 1.2em;
+  display: inline;
+  margin-right: 10px;
+}
+ul{
+  margin: 0px;
+  padding: 10px;
+  overflow: hidden;
+}
+.our-price p{
+  line-height: 16px;
+}
+a { 
+  // font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
+  // -webkit-font-smoothing: antialiased;
+  // font-family: Roboto,serif;
+  text-decoration: none; 
+  line-height: 1.375;
+  font-family: Roboto,serif;
+  color: #0E70BE;
+  // text-decoration: none;
+  // background-color: transparent;
+  // box-sizing: border-box;
+  width: 86px;
+  height: 24px;
+}
+a:hover { text-decoration: underline; }
+
+#stars{
+  width: 86px;
+  height: 16px;
+}
+#product-vitals{
+  font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
+  // line-height: 1.375;
+  // font-family: Roboto,serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  float: left;
+  padding-right: 15px;
+  margin-bottom: 10px;
+  // width: 58%;
+}
+li{
+  margin-top: 10px;
+}
+.title{
+  font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  list-style-type: none;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #555;
+  width: 120px;
+  float: left;
+  margin: 0px 30px 0px 0px;
+  padding-top: 10px;
+}
+.price{
+  font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
+// font-family: Roboto,serif;
+-webkit-font-smoothing: antialiased;
+list-style-type: none;
+box-sizing: border-box;
+margin-top: 10px;
+margin-bottom: 10px;
+// margin-left: 85px;
+display: block;
+// font-weight: 600;
+color: #b32605;
+font-size: 2.4rem;
+line-height: 12px;
+padding-top: 11px;
+font-weight: 600;
+}
+// .our-price{
+//   list-style-type:none;
+// }
+#before-discount-price{
+  font-size: 1.4em;
+  // line-height: 12px;
+  padding-top: 11px;
+  font-weight: 400;
+}
+#save-with-price{
+  font-size: 1.4em;
+  // line-height: 12px;
+  // padding-top: 11px;
+  font-weight: 400;
+  color: #b32605;
+}
+#save-with-price1{
+  font-size: 0.6em;
+  // line-height: 12px;
+  // padding-top: 11px;
+  font-weight: 400;
+  color: #b32605;
+}
+header{
+  padding: 10px;
+}
+.free-shipping{
+  font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
+  // font-family: Roboto,serif;
+  // -webkit-font-smoothing: antialiased;
+  list-style-type: none;
+  // box-sizing: border-box;
+  font-size: 12px;
+  line-height: 13px;
+  font-weight: 500;
+  color: #333;
+  margin: 10px 0px 0px 10px;
+  // padding: 10px 0px 0px 0px;
+  // float: left;
+}
+#product-subtitle{
+  margin: 0px 30px 0px 0px;
+}
+.hr1{
+  height: 1.5px;
+  border-width: 0px;
+  color:#dbdbdb;
+  background-color: #dbdbdb;
+  margin: 20px 0px 0px 0px;
+}
+.hr2{
+  height: 1.5px;
+  border-width: 0px;
+  color:#dbdbdb;
+  background-color: #dbdbdb;
+  margin: 20px 0px 0px 0px;
+}
+#icon{
+  height: 30px;
+  width: 30px;
+}
+#autoship{
+  text-align: right;
+  font-weight: 600;
+  margin: 0px 20px 30px 0px;
+  padding-top: 10px;
+}
+#autoship-span1{
+  color: #163977;
+  font-size: 14px;
+  font-size: 20px;
+}
+#autoship-span2{
+  color: #ef6c00;
+  display: block;
+  text-align: right;
+  font-size: 20px;
+}
+#tdp1{
+  margin: 2px;
+  font-size: 1.4em;
+}
+td#table-auto1{
+  // margin: 0px;
+  padding:  0px 17px 30px 0px;
+}
+td#table-auto2{
+  // margin: 0px;
+  padding:  0px 17px 0px 0px;
 }
