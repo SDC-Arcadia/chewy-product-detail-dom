@@ -12,7 +12,6 @@ import axios from 'axios';
 import '../styles.scss';
 import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
-import ItemStockComponent from './ItemStockComponent.jsx';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -74,28 +73,32 @@ class ProductDetail extends React.Component {
 
   render() {
     const { itemSizes } = this.state;
+    console.log(this.state);
     return (
       <div>
         {
         itemSizes.length
           ? (
-            <section id="right-column">
-              <div id="zoom-container" />
-              <ProductHeader
-                name={this.state.itemName}
-                seller={this.state.itemSeller}
-                brand={this.state.itemBrand}
-                count={this.state.count}
-                averageStars={this.state.average_stars}
-                answersCount={this.state.QA}
-              />
-              <PriceComponent
-                price={itemSizes[this.state.currentSize].price}
-                discount={itemSizes[this.state.currentSize].discount}
-                shippingOptions={itemSizes[this.state.currentSize].shipping_options}
-              />
-              <ItemStockComponent changeSize={this.handleDifferentSizeOptions} />
-            </section>
+            <>
+              <section id="right-column">
+                <div id="zoom-container" />
+                <ProductHeader
+                  name={this.state.itemName}
+                  seller={this.state.itemSeller}
+                  brand={this.state.itemBrand}
+                  count={this.state.count}
+                  averageStars={this.state.average_stars}
+                  answersCount={this.state.QA}
+                />
+                <PriceComponent
+                  price={itemSizes[this.state.currentSize].price}
+                  discount={itemSizes[this.state.currentSize].discount}
+                  stock={itemSizes[this.state.currentSize].item_stock}
+                  size={itemSizes[this.state.currentSize].size}
+                  changeSize={this.handleDifferentSizeOptions}
+                />
+              </section>
+            </>
           )
           : <div>Loading...</div>
         }

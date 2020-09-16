@@ -8,8 +8,11 @@ import React from 'react';
 import PriceBeforeDiscount from './PriceBeforeDiscount.jsx';
 import YouSaveOnPriceComponent from './YouSaveOnPriceComponent.jsx';
 import AutoshipComponent from './AutoshipComponent.jsx';
+import ItemStockComponent from './ItemStockComponent.jsx';
 
-const PriceComponent = ({ price, discount, shippingOptions }) => {
+const PriceComponent = ({
+  price, discount, changeSize, stock, size,
+}) => {
   const parsed = parseInt(price).toFixed(2);
   const discounted = parsed / 100 * discount;
   return (
@@ -50,7 +53,7 @@ const PriceComponent = ({ price, discount, shippingOptions }) => {
         </ul>
       </div>
       <div id="shipping-options">
-        {shippingOptions}
+        <ItemStockComponent sizeHandler={changeSize} itemsStock={stock} currentSize={size} />
       </div>
     </div>
   );
