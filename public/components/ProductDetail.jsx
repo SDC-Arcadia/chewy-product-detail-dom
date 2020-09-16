@@ -38,7 +38,7 @@ class ProductDetail extends React.Component {
   }
 
   getProductFullData(productId) {
-    axios.get(`http://localhost:3001/productFullData/${productId}`)
+    axios.get(`http://3.218.98.72:3001/productFullData/${productId}`)
       .then((result) => {
         // console.log('\\\\\\\\\\\\\\', result.data);
         const {
