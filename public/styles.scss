@@ -62,7 +62,7 @@ li{
   font-size: 1.6rem;
   line-height: 1;
   color: #555;
-  width: 85px;
+  width: 120px;
   float: left;
   margin: 0px 30px 0px 0px;
   padding-top: 10px;
@@ -84,39 +84,93 @@ line-height: 12px;
 padding-top: 11px;
 font-weight: 600;
 }
-.our-price{
-  list-style-type:none;
-}
+// .our-price{
+//   list-style-type:none;
+// }
 #before-discount-price{
   font-size: 1.4em;
   // line-height: 12px;
   padding-top: 11px;
-  font-weight: 600;
+  font-weight: 400;
 }
-
+#save-with-price{
+  font-size: 1.4em;
+  // line-height: 12px;
+  // padding-top: 11px;
+  font-weight: 400;
+  color: #b32605;
+}
+#save-with-price1{
+  font-size: 0.6em;
+  // line-height: 12px;
+  // padding-top: 11px;
+  font-weight: 400;
+  color: #b32605;
+}
 header{
   padding: 10px;
 }
 .free-shipping{
   font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
-// font-family: Roboto,serif;
-// -webkit-font-smoothing: antialiased;
-// list-style-type: none;
-// box-sizing: border-box;
-font-size: 12px;
-line-height: 13px;
-font-weight: 500;
-color: #333;
-margin: 10px 0px 0px 10px;
-// padding: 10px 0px 0px 0px;
-// float: left;
+  // font-family: Roboto,serif;
+  // -webkit-font-smoothing: antialiased;
+  list-style-type: none;
+  // box-sizing: border-box;
+  font-size: 12px;
+  line-height: 13px;
+  font-weight: 500;
+  color: #333;
+  margin: 10px 0px 0px 10px;
+  // padding: 10px 0px 0px 0px;
+  // float: left;
 }
 #product-subtitle{
   margin: 0px 30px 0px 0px;
 }
-hr{
+.hr1{
   height: 1.5px;
   border-width: 0px;
   color:#dbdbdb;
   background-color: #dbdbdb;
+  margin: 20px 0px 0px 0px;
+}
+.hr2{
+  height: 1.5px;
+  border-width: 0px;
+  color:#dbdbdb;
+  background-color: #dbdbdb;
+  margin: 20px 0px 0px 0px;
+}
+#icon{
+  height: 30px;
+  width: 30px;
+}
+#autoship{
+  text-align: right;
+  font-weight: 600;
+  margin: 0px 20px 30px 0px;
+  padding-top: 10px;
+}
+#autoship-span1{
+  color: #163977;
+  font-size: 14px;
+  font-size: 20px;
+}
+#autoship-span2{
+  color: #ef6c00;
+  display: block;
+  text-align: right;
+  font-size: 20px;
+}
+#tdp1{
+  margin: 2px;
+  font-size: 1.4em;
+}
+td#table-auto1{
+  // margin: 0px;
+  padding:  0px 17px 30px 0px;
+}
+td#table-auto2{
+  // margin: 0px;
+  padding:  0px 17px 0px 0px;
 }

@@ -6,9 +6,12 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import PriceBeforeDiscount from './PriceBeforeDiscount.jsx';
+import YouSaveOnPriceComponent from './YouSaveOnPriceComponent.jsx';
+import AutoshipComponent from './AutoshipComponent.jsx';
 
 const PriceComponent = ({ price, discount, shippingOptions }) => {
   const parsed = parseInt(price).toFixed(2);
+  const discounted = parsed / 100 * discount;
   return (
     <div id="product-vitals" className="product-vitals">
       <div id="pricing">
@@ -25,7 +28,7 @@ const PriceComponent = ({ price, discount, shippingOptions }) => {
                   </td>
                   <td>
                     <li className="price">
-                      {discount === 0 ? parsed : (parsed - (parsed / 100 * discount)).toFixed(2)}
+                      {discount === 0 ? `$${parsed}` : `$${(parsed - discounted).toFixed(2)}`}
                     </li>
                   </td>
                   <td>
@@ -40,7 +43,11 @@ const PriceComponent = ({ price, discount, shippingOptions }) => {
               </tbody>
             </table>
           </li>
-          <hr />
+          {discount === 0 ? '' : <YouSaveOnPriceComponent discountedAmount={discounted} discountPercentage={discount} />}
+          <hr className="hr1" />
+          {discount === 0 ? <AutoshipComponent fullPrice={price} /> : <AutoshipComponent fullPrice={price - discounted} />}
+          {/* <AutoshipComponent fullPrice={price} /> */}
+          <hr className="hr2" />
         </ul>
       </div>
       <div id="shipping-options">

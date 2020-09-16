@@ -3,7 +3,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 
-const PriceBeforeDiscount = ({ priceBefore }) => (
+const YouSaveOnPriceComponent = ({ discountedAmount, discountPercentage }) => (
   // <div id="product-vitals" className="product-vitals">
   //   <div id="pricing">
   // <ul>
@@ -12,13 +12,15 @@ const PriceBeforeDiscount = ({ priceBefore }) => (
       <tbody>
         <tr>
           <td>
-            <p className="title">Was:</p>
+            <p className="title">You Save:</p>
           </td>
           <td>
-            <p id="before-discount-price">
-              <strike>
-                {`$${priceBefore}`}
-              </strike>
+            {`
+                `}
+          </td>
+          <td>
+            <p id="save-with-price">
+              {`$${discountedAmount.toFixed(2)} (${discountPercentage}%)`}
             </p>
           </td>
         </tr>
@@ -28,4 +30,4 @@ const PriceBeforeDiscount = ({ priceBefore }) => (
 
 );
 
-export default PriceBeforeDiscount;
+export default YouSaveOnPriceComponent;
