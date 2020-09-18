@@ -11,7 +11,7 @@ import AutoshipComponent from './AutoshipComponent.jsx';
 import ItemStockComponent from './ItemStockComponent.jsx';
 
 const PriceComponent = ({
-  price, discount, changeSize, stock, size,
+  price, discount, changeSize, stock, csize, options, buttonOption,
 }) => {
   const parsed = parseInt(price).toFixed(2);
   const discounted = parsed / 100 * discount;
@@ -26,7 +26,7 @@ const PriceComponent = ({
                 <tr>
                   <td>
                     <p className="title">
-                      {'                    Price:'}
+                      Price:
                     </p>
                   </td>
                   <td>
@@ -53,7 +53,7 @@ const PriceComponent = ({
         </ul>
       </div>
       <div id="shipping-options">
-        <ItemStockComponent sizeHandler={changeSize} itemsStock={stock} currentSize={size} />
+        <ItemStockComponent sizeHandler={changeSize} itemsStock={stock} currentSize={csize} opts={options} sizeOption={buttonOption} />
       </div>
     </div>
   );

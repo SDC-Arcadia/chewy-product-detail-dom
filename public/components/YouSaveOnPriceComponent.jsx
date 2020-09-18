@@ -4,19 +4,12 @@
 import React from 'react';
 
 const YouSaveOnPriceComponent = ({ discountedAmount, discountPercentage }) => (
-  // <div id="product-vitals" className="product-vitals">
-  //   <div id="pricing">
-  // <ul>
   <li className="our-price">
     <table>
       <tbody>
         <tr>
           <td>
             <p className="title">You Save:</p>
-          </td>
-          <td>
-            {`
-                `}
           </td>
           <td>
             <p id="save-with-price">
@@ -27,7 +20,6 @@ const YouSaveOnPriceComponent = ({ discountedAmount, discountPercentage }) => (
       </tbody>
     </table>
   </li>
-
 );
 
 export default YouSaveOnPriceComponent;

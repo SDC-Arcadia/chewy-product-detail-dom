@@ -1,4 +1,4 @@
-#product-title h1 {
+.product-title h1 {
   font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
   padding-top: 1em;
@@ -7,7 +7,6 @@
   box-sizing: border-box;
   font-weight: 600;
   font-size: 2.4em;
-  // line-height: 1.2em;
   display: inline;
   margin-right: 10px;
 }
@@ -19,17 +18,13 @@ ul{
 .our-price p{
   line-height: 16px;
 }
-a { 
-  // font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
-  // -webkit-font-smoothing: antialiased;
-  // font-family: Roboto,serif;
+a{ 
+  -webkit-font-smoothing: antialiased;
+  font-family: Arial, Helvetica, sans-serif;
   text-decoration: none; 
   line-height: 1.375;
-  font-family: Roboto,serif;
   color: #0E70BE;
-  // text-decoration: none;
-  // background-color: transparent;
-  // box-sizing: border-box;
+  font-size: 24px;
   width: 86px;
   height: 24px;
 }
@@ -41,15 +36,12 @@ a:hover { text-decoration: underline; }
 }
 #product-vitals{
   font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
-  // line-height: 1.375;
-  // font-family: Roboto,serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   float: left;
   padding-right: 15px;
   margin-bottom: 10px;
-  // width: 58%;
 }
 li{
   margin-top: 10px;
@@ -69,41 +61,30 @@ li{
 }
 .price{
   font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
-// font-family: Roboto,serif;
--webkit-font-smoothing: antialiased;
-list-style-type: none;
-box-sizing: border-box;
-margin-top: 10px;
-margin-bottom: 10px;
-// margin-left: 85px;
-display: block;
-// font-weight: 600;
-color: #b32605;
-font-size: 2.4rem;
-line-height: 12px;
-padding-top: 11px;
-font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  list-style-type: none;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+  color: #b32605;
+  font-size: 2.4rem;
+  line-height: 12px;
+  padding-top: 11px;
+  font-weight: 600;
 }
-// .our-price{
-//   list-style-type:none;
-// }
 #before-discount-price{
   font-size: 1.4em;
-  // line-height: 12px;
   padding-top: 11px;
   font-weight: 400;
 }
 #save-with-price{
   font-size: 1.4em;
-  // line-height: 12px;
-  // padding-top: 11px;
   font-weight: 400;
   color: #b32605;
 }
 #save-with-price1{
   font-size: 0.6em;
-  // line-height: 12px;
-  // padding-top: 11px;
   font-weight: 400;
   color: #b32605;
 }
@@ -112,38 +93,39 @@ header{
 }
 .free-shipping{
   font: 400 62.5% / 1.5 Roboto, Franklin Gothic Medium, Tahoma, sans-serif;
-  // font-family: Roboto,serif;
-  // -webkit-font-smoothing: antialiased;
   list-style-type: none;
-  // box-sizing: border-box;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 13px;
   font-weight: 500;
   color: #333;
   margin: 10px 0px 0px 10px;
-  // padding: 10px 0px 0px 0px;
-  // float: left;
 }
 #product-subtitle{
   margin: 0px 30px 0px 0px;
 }
 .hr1{
-  height: 1.5px;
-  border-width: 0px;
-  color:#dbdbdb;
+  border: 3px solid #eee;
   background-color: #dbdbdb;
   margin: 20px 0px 0px 0px;
 }
 .hr2{
-  height: 1.5px;
-  border-width: 0px;
-  color:#dbdbdb;
+  border: 3px solid #eee;
   background-color: #dbdbdb;
   margin: 20px 0px 0px 0px;
+}
+.hr3{
+  background-color: #eee;
+  border: 2.5px solid #eee;
+  margin: 0px 0px 10px;
+  padding: 0px;
 }
 #icon{
   height: 30px;
   width: 30px;
+}
+
+.product-header-extras{
+  font-size: 24px;
 }
 #autoship{
   text-align: right;
@@ -163,7 +145,7 @@ header{
   font-size: 20px;
 }
 #tdp1{
-  margin: 2px;
+  margin: 20px 0px 0px 5px;
   font-size: 1.4em;
 }
 td#table-auto1{
@@ -194,5 +176,128 @@ td#table-auto2{
   font-size: 24px;
 }
 #stock{
+  cursor: pointer; 
   margin: 10px 10px 20px 10px;
+}
+.button{
+  cursor: pointer; 
+  border-radius: 0.4em;
+  width: 200px;
+  height: 60px;
+  color: #333333;
+  background-color: white;
+  margin: 5px;
+  font-size: 20px;
+  border: 0.3rem solid #dddddd
+}
+.stock-container{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  column-gap: 15px;
+}
+button:hover, button:active{
+  border: 0.3rem solid orange;
+  font-weight: 600;
+}
+#add-to-cart-box{
+  float: left;
+  width: 450px;
+  height: 315px;
+  box-sizing: border-box;
+  border: 4.5px solid #eee;
+  border-radius: 8px;
+  margin-top: 0px;
+}
+div#border-box{
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  height: 180px;
+  padding: 20px;
+}
+#add-to-fav{
+  cursor: pointer; 
+  list-style-type: none;
+  margin: 25%;
+}
+#heart{
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+}
+#td3{
+  padding: 0px 0px 70px 110px;
+}
+#td2{
+  padding: 0px 0px 50px 0px;
+}
+#td1{
+  padding: 0px 0px 190px 0px
+}
+#span-text{
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #128ced;
+  -webkit-font-smoothing: antialiased;
+}
+.cw-btn{
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  line-height: 1;
+  font-family: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 1.4rem 3.5rem;
+  margin-right: 1.5rem;
+  border: 0.1rem solid transparent;
+  border-radius: 4px;
+  background-color: #ef6c00;
+  color: #ffffff;
+  border: 0.1rem solid #ef6c00;
+  width: 100%;    
+}
+.js-quantity-dropdown{
+    font-size: 22px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 1.2em;
+    border: 1px solid #ccc;
+    margin: 0 0 10px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='23.88' height='43.81' preserveAspectRatio='xMinYMid' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='none' d='M23.91.03v43.83H-.03V.03'/%3E%3Cpath fill='%23666' d='M16.88 23.41H8.63l4.12 4.7 4.12-4.71zm0-2.86H8.63l4.12-4.71 4.12 4.71z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 50%;
+    height: 4.5rem;
+    border-radius: .4rem;
+    padding: 1rem 2rem .7rem 1rem;
+    width: 100%;
+    -webkit-appearance: none;
+}
+.quantity{
+  display: block;
+    font-weight: 400;
+    text-transform: none;
+    position: absolute;
+    height: 50px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    font-size: 1.6em;
+    text-align: left;
+    line-height: 1.8em;
+    margin: 0;
+    color: #999;
+    padding: 10px;
+    transition: all .15s ease-out;
+    height: auto;
+    line-height: 1em;
+    font-size: 1.5em;
+    padding: 7px 0 0 10px;
+}
+.quantity-select{
+  position: relative;
+  font-size: 10px;
+  margin: 0 0 15px;
+  transition: height .15s ease-out;
 }
