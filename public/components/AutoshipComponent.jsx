@@ -33,7 +33,7 @@ const AutoshipComponent = ({ fullPrice }) => {
             </td>
             <td id="table-auto2">
               <p className="price">
-                {`$${discounted}`}
+                {`$${discounted} `}
                 <span id="save-with-price1">
                   (Save an extra 5%)
                 </span>

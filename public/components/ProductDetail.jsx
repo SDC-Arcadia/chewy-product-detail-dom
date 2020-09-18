@@ -12,6 +12,7 @@ import axios from 'axios';
 import '../styles.scss';
 import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
+import AddToCardComponent from './AddToCardComponent.jsx';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -25,7 +26,9 @@ class ProductDetail extends React.Component {
       currentSize: '0',
       average_stars: '0',
       QA: '17',
+      sizes: [],
     };
+    this.hoverOverSizeOptions = this.hoverOverSizeOptions.bind(this);
     this.getProductFullData = this.getProductFullData.bind(this);
     this.handleDifferentSizeOptions = this.handleDifferentSizeOptions.bind(this);
   }
@@ -40,8 +43,8 @@ class ProductDetail extends React.Component {
   getProductFullData(productId) {
     axios.get(`http://3.218.98.72:3001/productFullData/${productId}`)
       .then((result) => {
-        // console.log('\\\\\\\\\\\\\\', result.data);
-
+        console.log('\\\\\\\\\\\\\\', result.data);
+        const sizes = result.data.size_options.map((option) => option.size);
         const {
           brand,
           seller,
@@ -58,11 +61,20 @@ class ProductDetail extends React.Component {
           itemSizes: size_options,
           count: review_count,
           average_stars,
+          sizes,
         });
       })
       .catch((error) => {
         console.error('Error:', error);
       });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  hoverOverSizeOptions(event) {
+    console.log('-----', event.target.value);
+    // this.setState({
+    //   size: event.target.value(),
+    // });
   }
 
   componentDidMount() {
@@ -73,7 +85,6 @@ class ProductDetail extends React.Component {
 
   render() {
     const { itemSizes } = this.state;
-    console.log(this.state);
     return (
       <div>
         {
@@ -90,13 +101,26 @@ class ProductDetail extends React.Component {
                   averageStars={this.state.average_stars}
                   answersCount={this.state.QA}
                 />
-                <PriceComponent
-                  price={itemSizes[this.state.currentSize].price}
-                  discount={itemSizes[this.state.currentSize].discount}
-                  stock={itemSizes[this.state.currentSize].item_stock}
-                  size={itemSizes[this.state.currentSize].size}
-                  changeSize={this.handleDifferentSizeOptions}
-                />
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <PriceComponent
+                          price={itemSizes[this.state.currentSize].price}
+                          discount={itemSizes[this.state.currentSize].discount}
+                          stock={itemSizes[this.state.currentSize].item_stock}
+                          csize={itemSizes[this.state.currentSize].size}
+                          changeSize={this.handleDifferentSizeOptions}
+                          options={this.state.sizes}
+                          hover={this.hoverOverSizeOptions}
+                        />
+                      </td>
+                      <td id="td1">
+                        <AddToCardComponent stock={itemSizes[this.state.currentSize].item_stock} />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </section>
             </>
           )

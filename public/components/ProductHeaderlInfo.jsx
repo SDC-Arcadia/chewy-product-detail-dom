@@ -10,13 +10,11 @@ const ProductHeaderComponent = ({
   const startSvgFilePath = `https://fec-kwame-picture-service.s3.amazonaws.com/stars/rating-${averageStars}.svg`;
   return (
     <header>
-      <div id="product-title">
+      <div className="product-title">
         <h1>
-          {brand}
-          {' '}
-          {name}
+          {`${brand} ${name}`}
         </h1>
-        <div id="product-subtitle">
+        <div id="product-header-extras">
           <a href="">
             {'                            By '}
             <span itemProp="brand">
@@ -31,17 +29,13 @@ const ProductHeaderComponent = ({
             <img id="stars" src={startSvgFilePath} />
           </picture>
           <a href="">
-            {' '}
             <span>
               {count}
               {' Reviews  '}
             </span>
           </a>
-          {' '}
           {' | '}
-          {' '}
           <a href="">
-            {'  '}
             {answersCount}
             {' Answered Questions'}
           </a>
