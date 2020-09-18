@@ -6,7 +6,7 @@
 import React from 'react';
 
 const ItemStockComponent = ({
-  sizeHandler, itemsStock, currentSize, opts, hoverOver,
+  sizeHandler, itemsStock, currentSize, opts,
 }) => (
   <div id="stock">
     {itemsStock > 0 ? <div id="in-stock">In stock</div> : <div className="out-of-stock">Out of stock</div> }
@@ -15,7 +15,7 @@ const ItemStockComponent = ({
       <span className="size-option">{`  ${currentSize}`}</span>
     </div>
     <div className="stock-container">
-      { opts.map((option, index) => <button key={index} className="button" onMouseOver={hoverOver} onClick={sizeHandler} type="button" id={index}>{option}</button>) }
+      { opts.map((option, index) => <button key={index} className="button" onClick={sizeHandler} type="button" id={index}>{option}</button>) }
     </div>
     <a hfer="" id="stock">Compare Similar Items </a>
   </div>

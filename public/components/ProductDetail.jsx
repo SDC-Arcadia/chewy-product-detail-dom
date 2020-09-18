@@ -27,8 +27,8 @@ class ProductDetail extends React.Component {
       average_stars: '0',
       QA: '17',
       sizes: [],
+      sizeButton: 0,
     };
-    this.hoverOverSizeOptions = this.hoverOverSizeOptions.bind(this);
     this.getProductFullData = this.getProductFullData.bind(this);
     this.handleDifferentSizeOptions = this.handleDifferentSizeOptions.bind(this);
   }
@@ -43,7 +43,7 @@ class ProductDetail extends React.Component {
   getProductFullData(productId) {
     axios.get(`http://3.218.98.72:3001/productFullData/${productId}`)
       .then((result) => {
-        console.log('\\\\\\\\\\\\\\', result.data);
+        // console.log('\\\\\\\\\\\\\\', result.data);
         const sizes = result.data.size_options.map((option) => option.size);
         const {
           brand,
@@ -62,19 +62,13 @@ class ProductDetail extends React.Component {
           count: review_count,
           average_stars,
           sizes,
+          sizeButton: result.data.size_options[0].size,
+
         });
       })
       .catch((error) => {
         console.error('Error:', error);
       });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  hoverOverSizeOptions(event) {
-    console.log('-----', event.target.value);
-    // this.setState({
-    //   size: event.target.value(),
-    // });
   }
 
   componentDidMount() {
@@ -112,7 +106,7 @@ class ProductDetail extends React.Component {
                           csize={itemSizes[this.state.currentSize].size}
                           changeSize={this.handleDifferentSizeOptions}
                           options={this.state.sizes}
-                          hover={this.hoverOverSizeOptions}
+                          buttonOption={this.state.sizeButton}
                         />
                       </td>
                       <td id="td1">

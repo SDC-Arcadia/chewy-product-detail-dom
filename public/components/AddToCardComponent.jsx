@@ -9,7 +9,7 @@ import React from 'react';
 const AddToCardComponent = ({ stock }) => {
   const options = [];
   for (let i = 1; i <= stock; i += 1) {
-    options.push(<option value={i}>{i}</option>);
+    options.push(<option key={i} value={i}>{i}</option>);
   }
   return (
     <div id="add-to-cart-box">
@@ -31,16 +31,18 @@ const AddToCardComponent = ({ stock }) => {
       <hr className="hr3" />
       <a id="add-to-fav">
         <table>
-          <tr>
-            <td id="td3">
-              <img id="heart" src="https://fec-kwame-picture-service.s3.amazonaws.com/stars/heart.png" />
-            </td>
-            <td id="td2">
-              <span id="span-text">
-                Add to Favorites
-              </span>
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td id="td3">
+                <img id="heart" src="https://fec-kwame-picture-service.s3.amazonaws.com/stars/heart.png" />
+              </td>
+              <td id="td2">
+                <span id="span-text">
+                  Add to Favorites
+                </span>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </a>
     </div>
