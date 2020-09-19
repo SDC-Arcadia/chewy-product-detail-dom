@@ -11,9 +11,9 @@ const ProductHeaderComponent = ({
   return (
     <header>
       <div className="product-title">
-        <h1>
+        <h5>
           {`${brand} ${name}`}
-        </h1>
+        </h5>
         <div id="product-header-extras">
           <a href="">
             {'                            By '}
