@@ -80,7 +80,7 @@ class ProductDetail extends React.Component {
   render() {
     const { itemSizes } = this.state;
     return (
-      <div>
+      <div id="main">
         {
         itemSizes.length
           ? (

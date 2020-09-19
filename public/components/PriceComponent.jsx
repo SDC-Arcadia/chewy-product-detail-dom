@@ -26,7 +26,7 @@ const PriceComponent = ({
                 <tr>
                   <td>
                     <p className="title">
-                      Price:
+                      DDPrice:
                     </p>
                   </td>
                   <td>
