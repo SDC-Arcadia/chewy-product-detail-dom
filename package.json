@@ -26,6 +26,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "clean-webpack-plugin": "^3.0.0",
+    "couchbase": "^3.0.6",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "faker": "^4.1.0",

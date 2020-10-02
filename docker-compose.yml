@@ -5,31 +5,30 @@ services:
     container_name: app
     # image: feckwame/aslan-product-detail
     restart: always
-    build: 
+    build:
       context: .
       dockerfile: './docker/app/Dockerfile.app'
     ports:
       - '3001:3001'
     depends_on:
       - db
-    networks: 
-      - pr-network
+    networks:
+      - sdc-network
   db:
-    image: mongo:latest
-    # container_name: mongo
-    # image: mongo
-    container_name: mongo-db
+    image: couchbase:community
+    container_name: couchbase-db
     restart: always
-    volumes:
-      - "data:/data/db"
     ports:
-      - "27017:27017"
-    networks: 
-      - pr-network
+      - '8091-8096:8091-8096'
+      - '11210-11211:11210-11211'
+    networks:
+      - sdc-network
+    volumes:
+      - 'cb-db:/opt/couchbase/var'
 volumes:
-  data:
+  cb-db:
     external: true
-networks: 
-  pr-network:
-    external: true  
+networks:
+  sdc-network:
+    external: true
 
