@@ -7,6 +7,7 @@ const cors = require('cors');
 // const axios = require('axios');
 const db = require('../database/dbConnection');
 const { buildFullDataResonse, buildProductInfoResponse } = require('./helpers');
+const { addProductInfo, updateProductInfo, deleteProductInfo } = require('./controller/productDetail');
 
 const app = express();
 app.use(cors());
@@ -35,5 +36,14 @@ app.get('/productInfo/:productId', async (req, res) => {
     res.status(404).send(error);
   }
 });
+
+// CREATE
+app.post('/productInfo', addProductInfo);
+
+// UPDATE
+app.put('/productInfo', updateProductInfo);
+
+// DELETE
+app.delete('/productInfo', deleteProductInfo);
 
 module.exports = app;
