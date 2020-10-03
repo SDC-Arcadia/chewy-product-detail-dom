@@ -14,6 +14,8 @@ import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
 import AddToCardComponent from './AddToCardComponent.jsx';
 
+const SERVER_URL = 'http://localhost:3001';
+
 class ProductDetail extends React.Component {
   constructor() {
     // eslint-disable-next-line no-unused-expressions
@@ -41,7 +43,7 @@ class ProductDetail extends React.Component {
   }
 
   getProductFullData(productId) {
-    axios.get(`http://3.218.98.72:3001/productFullData/${productId}`)
+    axios.get(`${SERVER_URL}/productFullData/${productId}`)
       .then((result) => {
         // console.log('\\\\\\\\\\\\\\', result.data);
         const sizes = result.data.size_options.map((option) => option.size);

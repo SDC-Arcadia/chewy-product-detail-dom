@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-nested-ternary */
 const faker = require('faker');
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 const db = require('./dbConnection');
 
 const leadZeros = (num) => {
@@ -15,9 +15,11 @@ const seedDB = async () => {
     const price = faker.commerce.price(3, 120);
     items.push(
 
-      db.upsert(uuidv4(),
+      db.upsert(
+        // uuidv4(),
+        `P${leadZeros(index)}`,
         {
-          productId: `P${leadZeros(index)}`,
+          // productId: `P${leadZeros(index)}`,
           brand: faker.company.companyName(),
           name: faker.commerce.productName(),
           seller: `${faker.company.companyName()} ${faker.company.companySuffix()}`,
@@ -46,7 +48,8 @@ const seedDB = async () => {
             },
 
           ],
-        }),
+        },
+      ),
     );
   }
   try {
