@@ -41,9 +41,9 @@ app.get('/productInfo/:productId', async (req, res) => {
 app.post('/productInfo', addProductInfo);
 
 // UPDATE
-app.put('/productInfo', updateProductInfo);
+app.put('/productInfo/:productId', updateProductInfo);
 
 // DELETE
-app.delete('/productInfo', deleteProductInfo);
+app.delete('/productInfo/:productId', deleteProductInfo);
 
 module.exports = app;
