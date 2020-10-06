@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const couchbase = require('couchbase');
 const { dbUsername, dbPassword } = require('../lib/dbCredentials');
 
@@ -10,22 +11,8 @@ const bucket = cluster.bucket('sdc-product-detail');
 
 const collection = bucket.defaultCollection();
 
-// const count = bucket.counter('idCounter', 1, 20, (err, result) => {
-//   if (err) {
-//     console.log('COUNTER ERROR:', err);
-//   } else {
-//     console.log('COUNTER RESULT:', result);
-//   }
-// });
-
-Promise.resolve(collection.binary().increment('counter-doc'))
-  .then(result => console.log('results', result.value));
-  Promise.resolve(collection.binary().increment('counter-doc', 1))
-    .then(result => console.log('results', result.value));
-    Promise.resolve(collection.binary().increment('counter-doc', 1))
-    .then(result => console.log('results', result.value));
-
-
-
+// Initialize Counter Document if not already initialized
+Promise.resolve(collection.binary().increment('counter'))
+  .catch((error) => console.log('COUNTER INITIALIZATION ERROR:', error));
 
 module.exports = collection;
