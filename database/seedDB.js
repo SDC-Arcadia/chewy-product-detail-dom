@@ -55,8 +55,11 @@ const seedDB = async () => {
   try {
     const results = await Promise.all(items);
     console.log('Seed Results', results);
+    // Increment document counter for Product ID tracking
+    const counter = await db.binary().increment('counter', 100, 0);
+    console.log('counter value:', counter.value);
   } catch (error) {
-    console.log('Seed Error');
+    console.log('Seed Error:', error);
   }
 };
 
