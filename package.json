@@ -5,7 +5,7 @@
   "author": "Aslanbek Darchiev",
   "scripts": {
     "test:watch": "jest --runInBand --watch",
-    "test": "jest --forceExit",
+    "test": "jest --runInBand",
     "db:setup": "node database/seedDB.js",
     "generate-data": "node database/data-generation/dataGenerator.js",
     "build-prod": "webpack --config webpack.prod.js",
