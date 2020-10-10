@@ -1,32 +1,36 @@
 const supertest = require('supertest');
 const app = require('../server/server');
+const db = require('../database/dbConnection');
+// const { response } = require('express');
 
 const request = supertest(app);
 
-describe('Test Endpoints', () => {
+const productId = 'P003';
+
+describe('Test API GET Requests', () => {
   it('Initial check for jest suite', (done) => {
     expect(1).toBe(1);
     done();
   });
 
   test('GET productInfo should return 200', (done) => {
-    request.get('/productInfo/P003').then((response) => {
-      expect(response.header['content-type']).toBe(
-        'application/json; charset=utf-8',
-      );
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toEqual({
-        _id: 'P003',
-        brand: 'Gerhold - Gottlieb',
-        name: 'Generic Cotton Hat',
-        seller: 'Oberbrunner Inc Group',
+    // query db to get record to compare API to:
+    db.get(productId)
+      .then((result) => {
+        const { name, brand, seller } = result.content;
+        return request.get(`/productInfo/${productId}`).then((response) => {
+          expect(response.header['content-type']).toBe(
+            'application/json; charset=utf-8',
+          );
+          expect(response.statusCode).toBe(200);
+          expect(response.body).toEqual({ name, brand, seller });
+          done();
+        });
       });
-      done();
-    });
   });
 
   test('GET productInfo should return 404 when requesting invalid productId', (done) => {
-    request.get('/productInfo/POO3').then((response) => {
+    request.get('/productInfo/P300').then((response) => {
       expect(response.header['content-type']).toBe(
         'application/json; charset=utf-8',
       );
@@ -36,58 +40,43 @@ describe('Test Endpoints', () => {
   });
 
   test('GET productFullData should return 200', (done) => {
-    request.get('/productFullData/P003').then((response) => {
-      expect(response.header['content-type']).toBe(
-        'application/json; charset=utf-8',
-      );
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toEqual({
-        _id: 'P003',
-        brand: 'Gerhold - Gottlieb',
-        name: 'Generic Cotton Hat',
-        seller: 'Oberbrunner Inc Group',
-        size_options: [
-          {
-            _id: '5f3f50b459f6276772c468f6',
-            size: 'small',
-            price: '42.00',
-            discount: 0,
-            shipping_options: '2 day shiping',
-            item_stock: 7,
-            is_favorite: false,
-          },
-          {
-            _id: '5f3f50b459f6276772c468f7',
-            size: 'medium',
-            price: '84',
-            discount: 0,
-            shipping_options: '',
-            item_stock: 8,
-            is_favorite: false,
-          },
-          {
-            _id: '5f3f50b459f6276772c468f8',
-            size: 'large',
-            price: '126',
-            discount: 5,
-            shipping_options: '',
-            item_stock: 8,
-            is_favorite: false,
-          },
-        ],
-        __v: 0,
+    db.get(productId)
+      .then((result) => {
+        const fullDataObject = { ...result.content };
+        fullDataObject.review_count = 10;
+        fullDataObject.average_stars = 5;
+        return request.get(`/productFullData/${productId}`).then((response) => {
+          expect(response.header['content-type']).toBe(
+            'application/json; charset=utf-8',
+          );
+          expect(response.statusCode).toBe(200);
+          expect(response.body).toEqual(fullDataObject);
+          done();
+        });
       });
-      done();
-    });
   });
 
   test('GET productFullData should return 404 when requesting invalid productId', (done) => {
-    request.get('/productFullData/POO3').then((response) => {
-      // expect(response.header['content-type']).toBe(
-      //   'application/json; charset=utf-8',
-      // );
+    request.get('/productFullData/P300').then((response) => {
       expect(response.statusCode).toBe(404);
       done();
     });
   });
 });
+
+describe('Test API POST Request', () => {
+  // Query database for value of counter doc
+  // POST test record to database
+  // Test status code, new value of test doc
+
+});
+
+describe('Test API PUT Request', () => {
+
+});
+
+describe('Test API DELETE Request', () => {
+
+});
+
+
