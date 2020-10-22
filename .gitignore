@@ -6,3 +6,4 @@ data
 lib
 output
 .env
+test-data

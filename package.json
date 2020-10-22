@@ -8,6 +8,8 @@
     "test": "jest --runInBand",
     "db:setup": "node database/seedDB.js",
     "generate-data": "node database/data-generation/dataGenerator.js",
+    "generate-data-json": "node database/data-generation/dataGenerator-json.js",
+    "generate-data-csv": "node database/data-generation/dataGenerator-csv.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack --config webpack.dev.js --watch",
     "start-server": "nodemon server/index.js",
