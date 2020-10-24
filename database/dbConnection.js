@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
+const dotenv = require('dotenv');
 const couchbase = require('couchbase');
-const { dbUsername, dbPassword } = require('../lib/dbCredentials');
 
-const cluster = new couchbase.Cluster('couchbase://localhost', {
-  username: dbUsername,
-  password: dbPassword,
+dotenv.config();
+
+const cluster = new couchbase.Cluster(process.env.DB_HOST, {
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
 });
 
 const bucket = cluster.bucket('sdc-product-detail');

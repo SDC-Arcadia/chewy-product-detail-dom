@@ -5,3 +5,4 @@ client/
 data
 lib
 output
+.env
