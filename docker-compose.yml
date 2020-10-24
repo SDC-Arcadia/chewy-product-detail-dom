@@ -25,8 +25,26 @@ services:
       - sdc-network
     volumes:
       - 'cb-db:/opt/couchbase/var'
+      - './database/data-generation/output:/tmp'
+  db-postgres:
+    image: postgres:latest
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: rpt22sdc
+      POSTGRES_USER: rpt22
+      POSTGRES_DB: sdc
+    ports:
+      - '5432:5432'
+    networks:
+      - sdc-network
+    volumes:
+      - 'pg-data:/var/lib/postgresql/data'
+      - './database/postgresql:/tmp'
 volumes:
   cb-db:
+    external: true
+  pg-data:
     external: true
 networks:
   sdc-network:
