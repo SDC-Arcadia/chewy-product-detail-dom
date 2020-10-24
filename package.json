@@ -2,7 +2,7 @@
   "name": "product_detail",
   "version": "",
   "main": "index.js",
-  "author": "Aslanbek Darchiev",
+  "author": "Dominic Silvia",
   "scripts": {
     "test:watch": "jest --runInBand --watch",
     "test": "jest --runInBand",
@@ -38,6 +38,7 @@
     "form-data": "^3.0.0",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
+    "pg": "^8.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "uuid": "^8.3.0"
