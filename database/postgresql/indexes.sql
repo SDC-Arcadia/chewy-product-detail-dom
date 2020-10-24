@@ -17,3 +17,7 @@ CREATE INDEX i_product_detail ON product_detail (product_id);
 CREATE INDEX i_product_sizes ON product_sizes (product_id);
 
 CREATE INDEX i_sellers ON sellers (seller_id);
+
+CREATE INDEX fki_product_sizes_shipping ON product_sizes (shipping_id);
+
+CREATE INDEX fki_product_detail_sellers ON product_detail (seller_id);
