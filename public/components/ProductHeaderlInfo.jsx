@@ -5,7 +5,7 @@
 import React from 'react';
 
 const ProductHeaderComponent = ({
-  name, brand, count, averageStars, answersCount,
+  name, seller, brand, count, averageStars, answersCount,
 }) => {
   const startSvgFilePath = `https://fec-kwame-picture-service.s3.amazonaws.com/stars/rating-${averageStars}.svg`;
   return (
@@ -18,7 +18,7 @@ const ProductHeaderComponent = ({
           <a href="">
             {'                            By '}
             <span itemProp="brand">
-              {brand}
+              {seller}
             </span>
           </a>
         </div>

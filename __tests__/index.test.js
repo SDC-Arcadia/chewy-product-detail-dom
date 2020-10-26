@@ -2,11 +2,41 @@ const supertest = require('supertest');
 const faker = require('faker');
 const app = require('../server/server');
 const db = require('../database/index');
-// const { response } = require('express');
+
 
 const request = supertest(app);
 
 const productId = '1000';
+
+let insertedProductId;
+
+const createTestObject = () => {
+  const basePrice = faker.commerce.price(3, 120);
+  const newTestObj = { sizeOptions: [] };
+  // newTestObj.brand = faker.company.companyName();
+  newTestObj.name = faker.commerce.productName();
+  // newTestObj.seller = `${faker.company.companyName()} ${faker.company.companySuffix()}`;
+  newTestObj.sellerId = faker.random.number({ min: 1, max: 1000000 });
+  newTestObj.is_favorite = false;
+
+  [['small', 1], ['medium', 2], ['large', 3]].forEach((item) => {
+    const sizeCode = item[0][0].toUpperCase();
+    const discount = faker.random.boolean() ? 5 : 0;
+    const shippingId = faker.random.boolean() ? 1 : null;
+    const itemStock = faker.random.number(10);
+
+    newTestObj.sizeOptions.push({
+      sizeCode,
+      sizeDesc: item[0],
+      price: basePrice * item[1],
+      discount,
+      shippingId,
+      itemStock,
+    });
+  });
+
+  return newTestObj;
+};
 
 describe('Test API GET Requests', () => {
   it('Initial check for jest suite', (done) => {
@@ -14,36 +44,60 @@ describe('Test API GET Requests', () => {
     done();
   });
 
-  test('GET productInfo should return 200', async (done) => {
+  test('GET productInfo should return 200, Match Record from DB', async (done) => {
     // query db to get record to compare API to:
     const qString = 'SELECT d.product_name AS name, s.brand, s.seller FROM product_detail AS d INNER JOIN sellers AS s ON s.seller_id = d.seller_id WHERE d.product_id = $1';
-    const qResult = await db.query(qString, [productId]);
-    const { name, brand, seller } = qResult.rows[0];
-    const gRequest = await request.get(`/productInfo/${productId}`);
-    expect(gRequest.header['content-type']).toBe(
-      'application/json; charset=utf-8',
-    );
-    expect(gRequest.statusCode).toBe(200);
-    expect(gRequest.body).toEqual({ name, brand, seller });
+    try {
+      const qResult = await db.query(qString, [productId]);
+      const { name, brand, seller } = qResult.rows[0];
+      const gRequest = await request.get(`/productInfo/${productId}`);
+      expect(gRequest.header['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
+      expect(gRequest.statusCode).toBe(200);
+      expect(gRequest.body).toEqual({ name, brand, seller });
+    } catch (err) {
+      if (err) {
+        console.log('GET TEST ERROR:', err);
+        done();
+      }
+    }
+
     done();
   });
 
   test('GET productInfo should return 404 when requesting invalid productId', async (done) => {
-    const response = await request.get('/productInfo/P300');
-    expect(response.header['content-type']).toBe(
-      'application/json; charset=utf-8',
-    );
-    expect(response.statusCode).toBe(404);
+
+    try {
+      const response = await request.get('/productInfo/P300');
+      expect(response.header['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
+      expect(response.statusCode).toBe(404);
+    } catch (err) {
+      if (err) {
+        console.log('GET TEST ERROR:', err);
+        done();
+      }
+    }
     done();
   });
 
   test('GET productFullData should return 200', async (done) => {
     // Get Product Info from database
-    const response = await request.get(`/productFullData/${productId}`);
-    expect(response.header['content-type']).toBe(
-      'application/json; charset=utf-8',
-    );
-    expect(response.statusCode).toBe(200);
+    try {
+      const response = await request.get(`/productFullData/${productId}`);
+      expect(response.header['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
+      expect(response.statusCode).toBe(200);
+    } catch (err) {
+      if (err) {
+        console.log('GET TEST ERROR:', err);
+        done();
+      }
+    }
+
     done();
   });
 
@@ -55,92 +109,54 @@ describe('Test API GET Requests', () => {
   });
 });
 
-xdescribe('Test API POST Request', () => {
+describe('Test API POST Request', () => {
   test('It should POST a new record to DB', (done) => {
     // Create record to POST
-    const basePrice = faker.commerce.price(3, 120);
-    const newTestObj = { size_options: [] };
-    newTestObj.brand = faker.company.companyName();
-    newTestObj.name = faker.commerce.productName();
-    newTestObj.seller = `${faker.company.companyName()} ${faker.company.companySuffix()}`;
+    const newRecord = createTestObject();
 
-    [['small', 1], ['medium', 2], ['large', 3]].forEach((item) => {
-      const discount = faker.random.boolean() ? 5 : 0;
-      const shippingOptions = faker.random.boolean() ? '2 day shipping' : '';
-      const itemStock = faker.random.number(10);
-      const isFavorite = false;
-      newTestObj.size_options.push({
-        size: item[0],
-        price: basePrice * item[1],
-        discount,
-        shipping_options: shippingOptions,
-        item_stock: itemStock,
-        is_favorite: isFavorite,
-      });
-    });
     // Post new record and make sure a new ProductId is returned
-    return request.post('/productInfo')
-      .send(newTestObj)
+    request.post('/productInfo')
+      .send(newRecord)
       .expect(200)
       .then((res) => {
+        insertedProductId = res.body.productId;
         expect(res.body.productId).toEqual(expect.anything());
         done();
       });
   });
 });
 
-xdescribe('Test API PUT Request', () => {
-  test('It Should Update a Document', (done) => {
-    let origName = null;
-    let newName = null;
-    // get document to change from DB, update Name property
-    db.get(productId)
-      .then((dbResult) => {
-        const productData = dbResult.content;
-        origName = productData.name;
-        newName = faker.commerce.productName();
-        productData.name = newName;
-        return productData;
-      })
-      // Update record through API with new Name property
-      .then((productData) => request.put(`/productInfo/${productId}`)
-        .send(productData)
-        .expect(200))
-      .then(() => {
-        // Query DB to make sure record has been updated
-        db.get(productId)
-          .then((newDbResult) => {
-            expect(newDbResult.content.name).toEqual(newName);
-            expect(newDbResult.content.name).not.toEqual(origName);
-            done();
-          });
-      })
-      .catch((error) => {
-        console.log('PUT ERROR:', error);
-        done();
-      });
+describe('Test API PUT Request', () => {
+  test('It Should Update a Document', async (done) => {
+    // create new test object to update existing record with
+    const testUpdateObj = createTestObject();
+
+    const newName = testUpdateObj.name;
+
+    // change record created in previous test - update with new name;
+    try {
+      await request.put(`/productInfo/${insertedProductId}`)
+        .send(testUpdateObj)
+        .expect(200);
+
+      // query db for record
+      await db.query('SELECT product_name FROM product_detail WHERE product_id = $1', [insertedProductId])
+        .then((result) => {
+          console.log('PUT RESULT:', result);
+          expect(result.rows[0].product_name).toEqual(newName);
+        });
+    } catch (err) {
+      console.log('PUT TEST ERROR:', err);
+      done();
+    }
+
+    done();
   });
 });
 
-xdescribe('Test API DELETE Request', () => {
-  beforeEach(() => {
-    // Insert Test document
-    db.insert('TESTDOC', { test: 'test' })
-      .then((result) => {
-        console.log('DB INSERT RESULT:', result);
-      })
-      .catch((error) => console.log('ERROR ADDING TESTDOC from DB:', error));
-  });
-
-  afterEach(() => {
-    // If test doc is still in datbase, delete it
-    db.remove('TESTDOC')
-      .then((result) => console.log('DB REMOVE RESULT:', result))
-      .catch((error) => console.log('ERROR REMOVING TESTDOC from DB:', error));
-  });
-
+describe('Test API DELETE Request', () => {
   test('It Should Delete a Document', (done) => {
-    request.delete('/productInfo/TESTDOC')
+    request.delete(`/productInfo/${insertedProductId}`)
       .expect(200)
       .end((err) => {
         if (err) return done(err);

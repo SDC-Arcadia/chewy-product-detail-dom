@@ -3,13 +3,14 @@ const buildFullDataResonse = (productInfo, sizeInfo) => {
     name,
     brand,
     seller,
-    is_favorite } = productInfo;
+    isFavorite,
+  } = productInfo;
 
   const fullDataResponse = {
     name,
     brand,
     seller,
-    is_favorite,
+    isFavorite,
   };
   fullDataResponse.size_options = sizeInfo;
 
