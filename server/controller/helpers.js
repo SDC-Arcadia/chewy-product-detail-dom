@@ -1,5 +1,19 @@
-const buildFullDataResonse = (dbQueryResult) => {
-  const fullDataResponse = { ...dbQueryResult.content };
+const buildFullDataResonse = (productInfo, sizeInfo) => {
+  const {
+    name,
+    brand,
+    seller,
+    isFavorite,
+  } = productInfo;
+
+  const fullDataResponse = {
+    name,
+    brand,
+    seller,
+    isFavorite,
+  };
+  fullDataResponse.size_options = sizeInfo;
+
   fullDataResponse.review_count = 10;
   fullDataResponse.average_stars = 5;
   // TO DO - get review count and starts from review service
@@ -11,7 +25,7 @@ const buildProductInfoResponse = (dbQueryResult) => {
     brand,
     name,
     seller,
-  } = dbQueryResult.content;
+  } = dbQueryResult;
 
   return { name, brand, seller };
 };

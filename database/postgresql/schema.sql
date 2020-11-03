@@ -28,7 +28,7 @@ CREATE TABLE product_detail (
 );
 
 CREATE TABLE product_sizes (
-  product_id INTEGER REFERENCES product_detail(product_id),
+  product_id INTEGER REFERENCES product_detail(product_id) ON DELETE CASCADE,
   size_code VARCHAR(10),
   size_desc VARCHAR(255),
   price REAL,
