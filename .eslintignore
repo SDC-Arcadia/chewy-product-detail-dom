@@ -1,2 +1,3 @@
 client/*
 __tests__
+newrelic.js
