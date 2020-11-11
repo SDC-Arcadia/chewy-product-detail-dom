@@ -14,18 +14,6 @@ services:
       - db
     networks:
       - sdc-network
-  db:
-    image: couchbase:community
-    container_name: couchbase-db
-    restart: always
-    ports:
-      - '8091-8096:8091-8096'
-      - '11210-11211:11210-11211'
-    networks:
-      - sdc-network
-    volumes:
-      - 'cb-db:/opt/couchbase/var'
-      - './database/data-generation/output:/tmp'
   db-postgres:
     image: postgres:latest
     container_name: postgres-db

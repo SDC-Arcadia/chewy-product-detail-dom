@@ -45,7 +45,7 @@ const newTransaction = async (method, data, productQuery, sizeQuery) => {
     }
     // Commit the transaction
     await client.query('COMMIT');
-    console.log(`${method === 'POST' ? 'INSERT' : 'UPDATE'} SUCCESSFUL, ProductId:`, productId);
+    // console.log(`${method === 'POST' ? 'INSERT' : 'UPDATE'} SUCCESSFUL, ProductId:`, productId);
     status = { status: 200, productId };
   } catch (err) {
     console.log(`ERROR ${method === 'POST' ? 'INSERTING' : 'UPDATING'} DOCUMENT:`, err);
@@ -75,16 +75,23 @@ module.exports.getProductFullData = async (req, res) => {
   try {
     const qProductDetail = 'SELECT d.product_id, d.product_name AS name, d.is_favorite AS isFavorite, s.brand, s.seller FROM product_detail AS d INNER JOIN sellers AS s ON s.seller_id = d.seller_id WHERE d.product_id = $1';
     const qProductSizes = 'SELECT s.product_id, s.size_desc AS size, s.price, s.discount, s.item_stock, o.shipping_option FROM product_sizes AS s LEFT JOIN shipping AS o ON s.shipping_id = o.shipping_id WHERE s.product_id = $1';
-    const productDetail = db.query(qProductDetail, [productId]);
-    const productSizes = db.query(qProductSizes, [productId]);
+    const productDetail = await db.query(qProductDetail, [productId]);
+    const productSizes = await db.query(qProductSizes, [productId]);
 
-    const result = await Promise.all([productDetail, productSizes]);
-    const productResult = result[0].rows[0];
-    const sizeResult = result[1].rows;
-    res.send(buildFullDataResonse(productResult, sizeResult));
+    // const result = await Promise.all([productDetail, productSizes]);
+
+    const productResult = productDetail.rows[0];
+    const sizeResult = productSizes.rows;
+
+    // if emtpty array send 404
+    if (!productResult) {
+      res.sendStatus(404);
+    } else {
+      res.send(buildFullDataResonse(productResult, sizeResult));
+    }
   } catch (error) {
-    console.log('ERROR GETTING PRODUCT FROM DB: ', error);
-    res.status(404).send({ error });
+    console.log('Server Error: ', error);
+    res.status(500).send({ error });
   }
 };
 

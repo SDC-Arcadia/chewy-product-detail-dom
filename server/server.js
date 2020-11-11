@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
+require('newrelic');
+// const cluster = require('cluster');
+// const cpus = require('os').cpus().length;
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -34,5 +37,21 @@ app.put('/productInfo/:productId', updateProductInfo);
 
 // DELETE
 app.delete('/productInfo/:productId', deleteProductInfo);
+
+// const port = 3001;
+
+// if (cluster.isMaster) {
+//   for (let i = 0; i < cpus; i += 1) {
+//     cluster.fork();
+//   }
+
+//   cluster.on('exit', () => {
+//     cluster.fork();
+//   });
+// } else {
+//   app.listen(port, () => {
+//     console.log(`listening at port http://localhost:${port}`);
+//   });
+// }
 
 module.exports = app;
