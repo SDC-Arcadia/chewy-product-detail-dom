@@ -1,3 +1,6 @@
 client/*
 __tests__
 newrelic.js
+stressGET.js
+stressPOST.js
+stressProxy.js

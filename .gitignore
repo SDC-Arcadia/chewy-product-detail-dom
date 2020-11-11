@@ -8,3 +8,4 @@ output
 .env
 test-data
 rewrelic_agent.log
+newrelic.js
