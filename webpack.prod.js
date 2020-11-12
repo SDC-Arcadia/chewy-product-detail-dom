@@ -7,6 +7,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -31,6 +32,7 @@ module.exports = merge(common, {
   plugins: [
     new MiniCssExtractPlugin({ filename: 'product-detail-styles.css' }),
     new CleanWebpackPlugin(),
+    new CompressionPlugin(),
   ],
   module: {
     rules: [
