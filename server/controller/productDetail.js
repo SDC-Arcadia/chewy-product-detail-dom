@@ -63,10 +63,17 @@ module.exports.getProductInfo = async (req, res) => {
   try {
     const qProductInfo = 'SELECT d.product_name AS name, s.brand, s.seller FROM product_detail AS d INNER JOIN sellers AS s ON s.seller_id = d.seller_id WHERE d.product_id = $1';
     const dbResult = await db.query(qProductInfo, [productId]);
-    res.send(buildProductInfoResponse(dbResult.rows[0]));
+
+    // if no results found, send 404
+    if (!dbResult.rows[0]) {
+      res.sendStatus(404);
+    } else {
+      res.send(buildProductInfoResponse(dbResult.rows[0]));
+    }
+    
   } catch (error) {
     console.log('ERROR GETTING PRODUCT FROM DB: ', error);
-    res.status(404).send({ error });
+    res.status(500).send({ error });
   }
 };
 

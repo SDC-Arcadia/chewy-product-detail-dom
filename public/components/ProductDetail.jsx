@@ -16,6 +16,8 @@ import AddToCardComponent from './AddToCardComponent.jsx';
 
 const SERVER_URL = 'http://localhost:3001';
 
+// const SERVER_URL = 'http://api.dom-rpt22.com';
+
 class ProductDetail extends React.Component {
   constructor() {
     // eslint-disable-next-line no-unused-expressions

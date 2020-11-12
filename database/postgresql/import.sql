@@ -1,5 +1,5 @@
 COPY shipping(shipping_id, shipping_option)
-FROM '/tmp/test-data/shipping.csv'
+FROM '/home/ec2-user/chewy-product-detail-dom/database/postgresql/test-data/shipping.csv'
 DELIMITER ','
 CSV HEADER;
 
