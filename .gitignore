@@ -1,6 +1,6 @@
 node_modules/
 package-lock.json
-client/
+build/
 .vscode
 data
 lib
@@ -11,3 +11,5 @@ rewrelic_agent.log
 newrelic.js
 aws.js
 product-detail.prod-bundle.js
+product-detail-styles.css.gz
+main.bundle.js

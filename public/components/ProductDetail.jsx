@@ -14,9 +14,10 @@ import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
 import AddToCardComponent from './AddToCardComponent.jsx';
 
-const SERVER_URL = 'http://localhost:3001';
+// const SERVER_URL = 'http://localhost:3001';
 
-// const SERVER_URL = 'http://api.dom-rpt22.com';
+const SERVER_URL = 'http://18.144.95.208:3001';
+
 
 class ProductDetail extends React.Component {
   constructor() {
