@@ -8,8 +8,8 @@ output
 .env
 test-data
 rewrelic_agent.log
-newrelic.js
 aws.js
 product-detail.prod-bundle.js
 product-detail-styles.css.gz
 main.bundle.js
+newrelic.js
