@@ -16,8 +16,7 @@ import AddToCardComponent from './AddToCardComponent.jsx';
 
 // const SERVER_URL = 'http://localhost:3001';
 
-const SERVER_URL = 'http://18.144.95.208:3001';
-
+const SERVER_URL = 'http://sdc-api.dominicsilvia.com';
 
 class ProductDetail extends React.Component {
   constructor() {
