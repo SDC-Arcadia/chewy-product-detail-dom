@@ -8,7 +8,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import '../styles.scss';
 import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
@@ -16,24 +16,37 @@ import AddToCardComponent from './AddToCardComponent.jsx';
 
 // const SERVER_URL = 'http://localhost:3001';
 
-const SERVER_URL = 'http://sdc-api.dominicsilvia.com';
+// const SERVER_URL = 'http://sdc-api.dominicsilvia.com';
 
 class ProductDetail extends React.Component {
-  constructor() {
+  constructor(props) {
     // eslint-disable-next-line no-unused-expressions
-    super();
+    super(props);
+    const {
+      name,
+      brand,
+      seller,
+      review_count,
+      average_stars,
+      size_options,
+    } = props.product;
+
+    const sizes = size_options.map((option) => option.size);
+
     this.state = {
-      brand: '',
-      itemSeller: '',
-      itemName: '',
-      itemSizes: [],
+      itemBrand: brand || '',
+      itemSeller: seller || '',
+      itemName: name || '',
+      itemSizes: size_options || [],
       currentSize: '0',
-      average_stars: '0',
+      average_stars: average_stars || '0',
       QA: '17',
-      sizes: [],
-      sizeButton: 0,
+      count: review_count || 0,
+      sizes: sizes || [],
+      sizeButton: size_options[0].size || 0,
     };
-    this.getProductFullData = this.getProductFullData.bind(this);
+
+    // this.getProductFullData = this.getProductFullData.bind(this);
     this.handleDifferentSizeOptions = this.handleDifferentSizeOptions.bind(this);
   }
 
@@ -44,87 +57,83 @@ class ProductDetail extends React.Component {
     });
   }
 
-  getProductFullData(productId) {
-    axios.get(`${SERVER_URL}/productFullData/${productId}`)
-      .then((result) => {
-        // console.log('\\\\\\\\\\\\\\', result.data);
-        const sizes = result.data.size_options.map((option) => option.size);
-        const {
-          brand,
-          seller,
-          name,
-          size_options,
-          review_count,
-          average_stars,
-        } = result.data;
+  // getProductFullData(productId) {
+  //   console.log('about to fetch data');
+  //   axios.get(`${SERVER_URL}/productFullData/${productId}`)
+  //     .then((result) => {
+  //       console.log('\\\\\\\\\\\\\\', result.data);
+  //       const sizes = result.data.size_options.map((option) => option.size);
+  //       const {
+  //         brand,
+  //         seller,
+  //         name,
+  //         size_options,
+  //         review_count,
+  //         average_stars,
+  //       } = result.data;
 
-        this.setState({
-          itemBrand: brand,
-          itemSeller: seller,
-          itemName: name,
-          itemSizes: size_options,
-          count: review_count,
-          average_stars,
-          sizes,
-          sizeButton: result.data.size_options[0].size,
+  //       this.setState({
+  //         itemBrand: brand,
+  //         itemSeller: seller,
+  //         itemName: name,
+  //         itemSizes: size_options,
+  //         count: review_count,
+  //         average_stars,
+  //         sizes,
+  //         sizeButton: result.data.size_options[0].size,
 
-        });
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // }
 
-  componentDidMount() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('productId');
-    console.log('productId', id);
-    this.getProductFullData(id === null ? '1' : id);
-  }
+  //    componentDidMount() {
+  //   //  const productId = this.props.productId || new URLSearchParams(window.location.search).get('productId');
+  //       const urlParams = new URLSearchParams(window.location.search);
+  //       const id = urlParams.get('productId');
+  //       console.log('PROPS', this.propProductId);
+  //       console.log('productId-ssr', id);
+  //       this.getProductFullData(id === null ? '1' : id);
+  //     this.getProductFullData(productId);
+  //  }
 
   render() {
     const { itemSizes } = this.state;
     return (
       <div id="main">
-        {
-        itemSizes.length
-          ? (
-            <>
-              <section id="right-column">
-                <div id="zoom-container" />
-                <ProductHeader
-                  name={this.state.itemName}
-                  seller={this.state.itemSeller}
-                  brand={this.state.itemBrand}
-                  count={this.state.count}
-                  averageStars={this.state.average_stars}
-                  answersCount={this.state.QA}
-                />
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <PriceComponent
-                          price={itemSizes[this.state.currentSize].price}
-                          discount={itemSizes[this.state.currentSize].discount}
-                          stock={itemSizes[this.state.currentSize].item_stock}
-                          csize={itemSizes[this.state.currentSize].size}
-                          changeSize={this.handleDifferentSizeOptions}
-                          options={this.state.sizes}
-                          buttonOption={this.state.sizeButton}
-                        />
-                      </td>
-                      <td id="td1">
-                        <AddToCardComponent stock={itemSizes[this.state.currentSize].item_stock} />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
-            </>
-          )
-          : <div>Loading...</div>
-        }
+        <section id="right-column">
+          <div id="zoom-container" />
+          <ProductHeader
+            name={this.state.itemName}
+            seller={this.state.itemSeller}
+            brand={this.state.itemBrand}
+            count={this.state.count}
+            averageStars={this.state.average_stars}
+            answersCount={this.state.QA}
+          />
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <PriceComponent
+                    price={itemSizes[this.state.currentSize].price}
+                    discount={itemSizes[this.state.currentSize].discount}
+                    stock={itemSizes[this.state.currentSize].item_stock}
+                    csize={itemSizes[this.state.currentSize].size}
+                    changeSize={this.handleDifferentSizeOptions}
+                    options={this.state.sizes}
+                    buttonOption={this.state.sizeButton}
+                  />
+                </td>
+                <td id="td1">
+                  <AddToCardComponent stock={itemSizes[this.state.currentSize].item_stock} />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </div>
     );
   }
