@@ -6,7 +6,7 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 const fsPromise = fs.promises;
 
 // create fs file read stream, pass to s3.upload function
-const updatePhotoBundle = fsPromise.readFile(path.join(__dirname, 'client', 'build', 'product-detail.prod-bundle.js.gz'))
+const updatePhotoBundle = fsPromise.readFile(path.join(__dirname, 'client', 'build', 'product-detail.prod-bundle-SSR.js.gz'))
   .then((fileBuffer) => {
     console.log('Uploading Bundle to S3');
     const params = {
@@ -15,7 +15,7 @@ const updatePhotoBundle = fsPromise.readFile(path.join(__dirname, 'client', 'bui
       Body: fileBuffer,
       ContentType: 'text/javascript',
       ContentEncoding: 'gzip',
-      Key: 'product-detail.prod-bundle.js.gz',
+      Key: 'bundles/product-detail.prod-bundle-SSR.js.gz',
     };
 
     return s3.upload(params).promise();

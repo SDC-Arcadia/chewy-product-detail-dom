@@ -12,7 +12,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: 'product-detail.prod-bundle.js',
+    filename: 'product-detail.prod-bundle-SSR.js',
     path: path.resolve(__dirname, './client/build'),
   },
   optimization: {
