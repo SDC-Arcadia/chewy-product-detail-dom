@@ -8,15 +8,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react';
-// import axios from 'axios';
 import '../styles.scss';
 import PriceComponent from './PriceComponent.jsx';
 import ProductHeader from './ProductHeaderlInfo.jsx';
 import AddToCardComponent from './AddToCardComponent.jsx';
-
-// const SERVER_URL = 'http://localhost:3001';
-
-// const SERVER_URL = 'http://sdc-api.dominicsilvia.com';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -46,7 +41,6 @@ class ProductDetail extends React.Component {
       sizeButton: size_options[0].size || 0,
     };
 
-    // this.getProductFullData = this.getProductFullData.bind(this);
     this.handleDifferentSizeOptions = this.handleDifferentSizeOptions.bind(this);
   }
 
@@ -56,48 +50,6 @@ class ProductDetail extends React.Component {
       currentSize: event.target.id,
     });
   }
-
-  // getProductFullData(productId) {
-  //   console.log('about to fetch data');
-  //   axios.get(`${SERVER_URL}/productFullData/${productId}`)
-  //     .then((result) => {
-  //       console.log('\\\\\\\\\\\\\\', result.data);
-  //       const sizes = result.data.size_options.map((option) => option.size);
-  //       const {
-  //         brand,
-  //         seller,
-  //         name,
-  //         size_options,
-  //         review_count,
-  //         average_stars,
-  //       } = result.data;
-
-  //       this.setState({
-  //         itemBrand: brand,
-  //         itemSeller: seller,
-  //         itemName: name,
-  //         itemSizes: size_options,
-  //         count: review_count,
-  //         average_stars,
-  //         sizes,
-  //         sizeButton: result.data.size_options[0].size,
-
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error:', error);
-  //     });
-  // }
-
-  //    componentDidMount() {
-  //   //  const productId = this.props.productId || new URLSearchParams(window.location.search).get('productId');
-  //       const urlParams = new URLSearchParams(window.location.search);
-  //       const id = urlParams.get('productId');
-  //       console.log('PROPS', this.propProductId);
-  //       console.log('productId-ssr', id);
-  //       this.getProductFullData(id === null ? '1' : id);
-  //     this.getProductFullData(productId);
-  //  }
 
   render() {
     const { itemSizes } = this.state;

@@ -65,20 +65,15 @@ module.exports = merge(common, {
     filename: 'server.js',
     library: 'productDetail',
     libraryTarget: 'commonjs2',
-    // publicPath: '/client/dist'
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    // new HtmlWebpackPlugin({
-    //   template: './public/index.html',
-    // }),
   ],
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-        // use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },

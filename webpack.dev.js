@@ -10,7 +10,6 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, './client/dist'),
     filename: '[name].bundle.js',
-    // publicPath: '/client/dist'
   },
   plugins: [
     new HtmlWebpackPlugin({
